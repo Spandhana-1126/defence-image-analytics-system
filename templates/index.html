@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Defence Image Analytics System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/styles.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Defence Image Analytics System</h1>
+
+    <p>
+        AI-powered RGB image analysis platform
+        for defence surveillance applications.
+    </p>
+
+    {% if error %}
+        <div class="error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <form action="/process_image"
+          method="POST"
+          enctype="multipart/form-data">
+
+        <input type="file"
+               name="image"
+               required>
+
+        <button type="submit">
+            Analyze Image
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

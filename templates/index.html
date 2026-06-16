@@ -5,42 +5,66 @@
 
     <title>Defence Image Analytics System</title>
 
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet"
           href="{{ url_for('static',
-          filename='css/styles.css') }}">
+          filename='styles.css') }}">
 
 </head>
 
 <body>
 
-<div class="container">
+<nav>
 
-    <h1>Defence Image Analytics System</h1>
+    <h1>
+        Defence Image Analytics System
+    </h1>
 
     <p>
-        AI-powered RGB image analysis platform
-        for defence surveillance applications.
+        AI-Powered RGB Image Intelligence Platform
     </p>
 
-    {% if error %}
-        <div class="error">
-            {{ error }}
-        </div>
-    {% endif %}
+</nav>
 
-    <form action="/process_image"
-          method="POST"
-          enctype="multipart/form-data">
+<div class="hero">
 
-        <input type="file"
-               name="image"
-               required>
+    <div class="card upload-card">
 
-        <button type="submit">
-            Analyze Image
-        </button>
+        <h2>
+            Upload Surveillance Image
+        </h2>
 
-    </form>
+        <p>
+            Analyze RGB statistics for
+            defence image intelligence.
+        </p>
+
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form action="/process_image"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <input type="file"
+                   name="image"
+                   accept=".jpg,.jpeg,.png"
+                   required>
+
+            <button type="submit">
+
+                Analyze Image
+
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
 

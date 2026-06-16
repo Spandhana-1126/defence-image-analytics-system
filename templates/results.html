@@ -5,104 +5,246 @@
 
 <title>Analysis Results</title>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0">
+
+<script src=
+"https://cdn.jsdelivr.net/npm/chart.js">
+</script>
 
 <link rel="stylesheet"
 href="{{ url_for('static',
-filename='css/styles.css') }}">
+filename='styles.css') }}">
 
 </head>
 
 <body>
 
+<nav>
+
+<h1>
+
+Defence Image Analytics System
+
+</h1>
+
+<p>
+
+Image Analysis Dashboard
+
+</p>
+
+</nav>
+
 <div class="container">
 
-<h1>Analysis Results</h1>
+<div class="analysis-grid">
+
+<div class="card">
+
+<h2>
+
+Image Preview
+
+</h2>
 
 <img src="/{{ image_path }}"
 class="preview">
 
-<div class="stats">
+</div>
 
-<h2>RGB Statistics</h2>
+<div class="card">
+
+<h2>
+
+RGB Statistics
+
+</h2>
 
 <table>
 
 <tr>
+
 <th>Channel</th>
+
 <th>Min</th>
+
 <th>Max</th>
+
 <th>Mean</th>
+
 <th>Variance</th>
+
 </tr>
 
 <tr>
+
 <td>Red</td>
+
 <td>{{ r_min }}</td>
+
 <td>{{ r_max }}</td>
+
 <td>{{ r_mean }}</td>
+
 <td>{{ r_var }}</td>
+
 </tr>
 
 <tr>
+
 <td>Green</td>
+
 <td>{{ g_min }}</td>
+
 <td>{{ g_max }}</td>
+
 <td>{{ g_mean }}</td>
+
 <td>{{ g_var }}</td>
+
 </tr>
 
 <tr>
+
 <td>Blue</td>
+
 <td>{{ b_min }}</td>
+
 <td>{{ b_max }}</td>
+
 <td>{{ b_mean }}</td>
+
 <td>{{ b_var }}</td>
+
 </tr>
 
 </table>
 
 </div>
 
-<canvas id="chart"></canvas>
+</div>
+
+<div class="chart-grid">
+
+<div class="card">
+
+<h2>
+
+Mean Comparison
+
+</h2>
+
+<canvas id="meanChart">
+
+</canvas>
+
+</div>
+
+<div class="card">
+
+<h2>
+
+Variance Comparison
+
+</h2>
+
+<canvas id="varianceChart">
+
+</canvas>
+
+</div>
+
+</div>
 
 </div>
 
 <script>
 
-new Chart(document.getElementById('chart'), {
+new Chart(
 
-type: 'bar',
-
-data: {
-
-labels: ['Red','Green','Blue'],
-
-datasets: [
+document.getElementById(
+'meanChart'
+),
 
 {
-label: 'Mean',
-data: [
+
+type:'bar',
+
+data:{
+
+labels:[
+'Red',
+'Green',
+'Blue'
+],
+
+datasets:[{
+
+label:'Mean',
+
+data:[
 {{ r_mean }},
 {{ g_mean }},
 {{ b_mean }}
+],
+
+backgroundColor:[
+'#ef4444',
+'#22c55e',
+'#3b82f6'
 ]
-},
+
+}]
+
+}
+
+}
+
+);
+
+new Chart(
+
+document.getElementById(
+'varianceChart'
+),
 
 {
-label: 'Variance',
-data: [
+
+type:'bar',
+
+data:{
+
+labels:[
+'Red',
+'Green',
+'Blue'
+],
+
+datasets:[{
+
+label:'Variance',
+
+data:[
 {{ r_var }},
 {{ g_var }},
 {{ b_var }}
+],
+
+backgroundColor:[
+'#ef4444',
+'#22c55e',
+'#3b82f6'
 ]
+
+}]
+
 }
 
-]
-
 }
 
-});
+);
 
 </script>
 
